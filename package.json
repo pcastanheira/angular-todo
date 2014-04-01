@@ -1,0 +1,12 @@
+{
+    "name": "angular-mongo-todo",
+    "version": "0.0.0",
+    "description": "Demo for Todo on this techs",
+    "main": "server.js",
+    "author": "Paulo Costa",
+    "dependencies": {
+        "express": "~3.4.4",
+        "mongodb": "",
+        "mongoose": "~3.6.3",
+    }
+}
