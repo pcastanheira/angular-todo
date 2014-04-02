@@ -3,9 +3,15 @@ var express = require('express');
 var app = express();
 var mongoose = require('mongoose');
 
+var jade = require('jade');
+
+app.set('views', __dirname + '/views');
+app.set('view engine', 'jade');
+app.set('view options', {layout: false});
+
 // configuration
 //development
-mongoose.connect('mongodb://localhost/test');
+mongoose.connect('mongodb://localhost/appTodo');
 
 
 //connection test
@@ -18,11 +24,13 @@ db.once('open', function callback () {
 
 
 app.configure(function(){
+	console.log(__dirname+'/public');
 	app.use(express.static(__dirname + '/public'));
 	app.use(express.logger('dev'));
 	app.use(express.urlencoded());
 	app.use(express.json());
 });
+
 
 //model ============
 	var Todo = mongoose.model('Todo',{
@@ -81,13 +89,17 @@ app.configure(function(){
 	
 	//does update method exists?
 	
+	/*
 	//application
 	app.get('*', function(){
 		res.sendfile('./public/index.html');
 		//load the single view file (angular will handle states)
 	});
+	*/
+	app.get('/', function(req, res){
+	res.render('home.jade');
+});
 	
-
 //listen port
 app.listen(8080);
 console.log('App listen on port 8080');
